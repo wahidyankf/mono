@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@wahidyankf/node-hello": ["node-hello/src"],
+      "@wahidyankf/ts-hello-package": ["ts-hello-package/src"],
+      "@wahidyankf/*": ["*/src"]
+    }
+  }
+}
