@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "tsnd --respawn src/index.ts",
     "start": "ts-node src/index.ts",
+    "build": "echo nothing",
     "test": "yarn jest"
   }
 }
