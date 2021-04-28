@@ -1,0 +1,18 @@
+{
+  "name": "@wahidyankf/ts-hello-package",
+  "version": "0.0.1",
+  "description": "hello ts package",
+  "main": "dist/index",
+  "types": "dist/index",
+  "repository": "https://github.com/wahidyankf/mono/tree/master/packages/ts-hello-package",
+  "author": "wahidyankf",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn clean && yarn compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json"
+  }
+}
