@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "hello world!",
   "main": "src/index.js",
-  "repository": "https://github.com/wahidyankf/mono/tree/master/packages/node-hello",
+  "repository": "https://github.com/wahidyankf/mono/tree/master/packages/ts-node-hello",
   "author": "wahidyankf",
   "license": "MIT",
   "dependencies": {
