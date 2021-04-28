@@ -12,6 +12,7 @@
   "private": true,
   "devDependencies": {
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.4"
   }
 }
