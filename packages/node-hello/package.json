@@ -7,7 +7,7 @@
   "author": "wahidyankf",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "dev": "tsnd --respawn src/index.ts",
+    "start": "ts-node src/index.ts"
   }
 }
