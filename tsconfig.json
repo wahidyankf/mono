@@ -3,8 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@wahidyankf/ts-node-hello": ["ts-node-hello/src"],
-      "@wahidyankf/ts-hello-package": ["ts-hello-package/src"],
+      // "@wahidyankf/ts-node-hello": ["ts-node-hello/src"],
+      // "@wahidyankf/ts-hello-package": ["ts-hello-package/src"],
+      // "@wahidyankf/ts-utils": ["ts-utils/src"],
       "@wahidyankf/*": ["*/src"]
     }
   }

@@ -1,0 +1,20 @@
+{
+  "name": "@wahidyankf/ts-utils",
+  "version": "0.0.1",
+  "description": "ts utility",
+  "main": "dist/index",
+  "types": "dist/index",
+  "repository": "https://github.com/wahidyankf/mono/tree/master/packages/ts-utils",
+  "author": "wahidyankf",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "scripts": {
+    "build": "yarn clean && yarn compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "test": "yarn jest"
+  }
+}
