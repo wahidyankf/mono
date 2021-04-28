@@ -9,5 +9,8 @@
   "repository": "git@github.com:wahidyankf/mono.git",
   "author": "Wahidyan Kresna Fridayoka <wahidyankf@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
 }
