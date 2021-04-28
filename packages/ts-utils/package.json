@@ -15,6 +15,7 @@
     "build": "yarn clean && yarn compile",
     "clean": "rm -rf ./dist",
     "compile": "tsc -p tsconfig.build.json",
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "test:watch": "yarn jest --watch"
   }
 }

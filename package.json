@@ -25,6 +25,7 @@
     "bootstrap": "npx oao bootstrap",
     "clean": "npx oao clean",
     "build": "npx oao all \"yarn run build\" --tree",
-    "test": "yarn build && npx oao all \"yarn run test\" --parallel && echo all test passed"
+    "test": "yarn build && npx oao all \"yarn run test\" --parallel && echo all test passed",
+    "test:watch": "yarn build && npx oao all \"yarn run test:watch\" --parallel"
   }
 }

@@ -13,6 +13,7 @@
     "dev": "tsnd --respawn src/index.ts",
     "start": "ts-node src/index.ts",
     "build": "echo nothing",
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "test:watch": "yarn jest --watch"
   }
 }
