@@ -1,0 +1,13 @@
+{
+  "name": "mono",
+  "version": "1.0.0",
+  "description": "wahidyankf's public monorepo",
+  "workspaces": [
+    "packages/**/*"
+  ],
+  "main": "index.js",
+  "repository": "git@github.com:wahidyankf/mono.git",
+  "author": "Wahidyan Kresna Fridayoka <wahidyankf@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
