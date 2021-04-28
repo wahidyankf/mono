@@ -1,11 +1,14 @@
 {
-  "name": "node-hello",
+  "name": "@wahidyankf/ts-node-hello",
   "version": "1.0.0",
   "description": "hello world!",
   "main": "src/index.js",
   "repository": "https://github.com/wahidyankf/mono/tree/master/packages/node-hello",
   "author": "wahidyankf",
   "license": "MIT",
+  "dependencies": {
+    "@wahidyankf/ts-hello-package": "0.0.1"
+  },
   "scripts": {
     "dev": "tsnd --respawn src/index.ts",
     "start": "ts-node src/index.ts"
