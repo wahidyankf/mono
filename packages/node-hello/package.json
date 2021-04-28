@@ -1,0 +1,13 @@
+{
+  "name": "node-hello",
+  "version": "1.0.0",
+  "description": "hello world!",
+  "main": "src/index.js",
+  "repository": "https://github.com/wahidyankf/mono/tree/master/packages/node-hello",
+  "author": "wahidyankf",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  }
+}
