@@ -7,10 +7,12 @@
   "author": "wahidyankf",
   "license": "MIT",
   "dependencies": {
-    "@wahidyankf/ts-hello-package": "0.0.1"
+    "@wahidyankf/ts-hello-package": "0.0.1",
+    "@wahidyankf/ts-utils": "0.0.1"
   },
   "scripts": {
     "dev": "tsnd --respawn src/index.ts",
+    "build": "echo no build!",
     "start": "ts-node src/index.ts",
     "test": "yarn jest",
     "test:watch": "yarn jest --watch"
