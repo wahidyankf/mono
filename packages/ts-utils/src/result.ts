@@ -22,7 +22,10 @@ export function isOk<T, U>(opt: Result<T, U>): boolean {
   return opt._tag === 'Ok';
 }
 
-export function isError() {}
+export function isError<T, U>(result: Result<T, U>): boolean {
+  return result._tag === 'Error';
+}
+
 export function map() {}
 export function mapError() {}
 export function flatMap() {}
