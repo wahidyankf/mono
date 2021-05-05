@@ -10,16 +10,16 @@ interface Error<T> {
 
 export type Result<T, U> = Ok<T> | Error<U>;
 
-export function ok<T, U>(val: T): Result<T, U> {
-  return {_tag: 'Ok', value: val};
+export function ok<T, U>(value: T): Result<T, U> {
+  return {_tag: 'Ok', value};
 }
 
-export function error<T, U>(val: U): Result<T, U> {
-  return {_tag: 'Error', value: val};
+export function error<T, U>(value: U): Result<T, U> {
+  return {_tag: 'Error', value};
 }
 
-export function isOk<T, U>(opt: Result<T, U>): boolean {
-  return opt._tag === 'Ok';
+export function isOk<T, U>(result: Result<T, U>): boolean {
+  return result._tag === 'Ok';
 }
 
 export function isError<T, U>(result: Result<T, U>): boolean {
