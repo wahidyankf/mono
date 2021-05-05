@@ -27,12 +27,19 @@ export function isError<T, U>(result: Result<T, U>): boolean {
 }
 
 export function map() {}
+
 export function mapError() {}
+
 export function flatMap() {}
+
 export function flatMapError() {}
+
 export function get() {}
+
 export function getError() {}
+
 export function getOrElse() {}
+
 export function getErrorOrElse() {}
 
 export default {

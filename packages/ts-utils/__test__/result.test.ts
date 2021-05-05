@@ -1,4 +1,4 @@
-import {ok, error, isOk, isError} from '../src/result';
+import {ok, error, isOk, isError, map} from '../src/result';
 
 describe('ok works correctly', () => {
   test('ok generate tag correctly', () => {
