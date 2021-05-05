@@ -10,6 +10,7 @@ import {
   map,
   mapError,
   flatMap,
+  flatMapError,
 } from '../src/result';
 import {some, none} from '../src/option';
 
@@ -173,6 +174,33 @@ describe('flatMap works correctly', () => {
     });
     expect(flatMap((x: number) => ok(x * 2))(error(1))).toEqual({
       _tag: 'Error',
+      value: 1,
+    });
+  });
+});
+
+describe('flatMapError works correctly', () => {
+  test('flatMapError successfully maps the error value', () => {
+    expect(
+      flatMapError((s: string) => error('hello ' + s))(error('string')),
+    ).toEqual({
+      _tag: 'Error',
+      value: 'hello string',
+    });
+    expect(flatMapError((x: number) => error(x * 2))(error(1))).toEqual({
+      _tag: 'Error',
+      value: 1 * 2,
+    });
+  });
+  test('flatMapError skips the operation on ok', () => {
+    expect(
+      flatMapError((s: string) => error('hello ' + s))(ok('string')),
+    ).toEqual({
+      _tag: 'Ok',
+      value: 'string',
+    });
+    expect(flatMapError((x: number) => error(x * 2))(ok(1))).toEqual({
+      _tag: 'Ok',
       value: 1,
     });
   });

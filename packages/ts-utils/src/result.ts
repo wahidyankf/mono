@@ -100,7 +100,17 @@ export function flatMap<T, U, T1>(
   };
 }
 
-export function flatMapError() {}
+export function flatMapError<T, U, U1>(
+  fn: (value: U) => Result<T, U1>,
+): (result: Result<T, U>) => Result<T, U1> {
+  return (result: Result<T, U>) => {
+    if (result._tag === 'Error') {
+      return fn(result.value);
+    } else {
+      return result as Result<T, U1>;
+    }
+  };
+}
 
 export default {
   ok,
