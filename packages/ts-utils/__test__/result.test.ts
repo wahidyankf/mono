@@ -26,37 +26,25 @@ describe('error works correctly', () => {
 });
 
 describe('isOk works correctly', () => {
-  test('isOk returns true on okString', () => {
+  test('isOk returns true on ok', () => {
     expect(isOk(ok('string'))).toEqual(true);
-  });
-
-  test('isOk returns true on okNumber', () => {
     expect(isOk(ok(1))).toEqual(true);
   });
 
-  test('isOk returns false on errorString', () => {
+  test('isOk returns false on error', () => {
     expect(isOk(error('string'))).toEqual(false);
-  });
-
-  test('isOk returns false on errorNumber', () => {
     expect(isOk(error(1))).toEqual(false);
   });
 });
 
 describe('isError works correctly', () => {
-  test('isError returns true on errorString', () => {
+  test('isError returns true on error', () => {
     expect(isError(error('string'))).toEqual(true);
-  });
-
-  test('isError returns true on errorNumber', () => {
     expect(isError(error(1))).toEqual(true);
   });
 
-  test('isError returns false on okString', () => {
+  test('isError returns false on ok', () => {
     expect(isError(ok('string'))).toEqual(false);
-  });
-
-  test('isError returns false on okNumber', () => {
     expect(isError(ok(1))).toEqual(false);
   });
 });
