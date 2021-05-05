@@ -7,6 +7,7 @@ import {
   getOrElse,
   getError,
   getErrorOrElse,
+  map,
 } from '../src/result';
 import {some, none} from '../src/option';
 
@@ -103,5 +104,28 @@ describe('getErrorOrElse works correctly', () => {
   test('getErrorOrElse returns the default value on ok', () => {
     expect(getErrorOrElse('default')(ok('string'))).toEqual('default');
     expect(getErrorOrElse(0)(ok(1))).toEqual(0);
+  });
+});
+
+describe('map works correctly', () => {
+  test('map successfully maps the ok value', () => {
+    expect(map((s: string) => 'hello ' + s)(ok('string'))).toEqual({
+      _tag: 'Ok',
+      value: 'hello string',
+    });
+    expect(map((x: number) => x * 2)(ok(1))).toEqual({
+      _tag: 'Ok',
+      value: 1 * 2,
+    });
+  });
+  test('map skips the operation on error', () => {
+    expect(map((s: string) => 'hello ' + s)(error('string'))).toEqual({
+      _tag: 'Error',
+      value: 'string',
+    });
+    expect(map((x: number) => x * 2)(error(1))).toEqual({
+      _tag: 'Error',
+      value: 1,
+    });
   });
 });

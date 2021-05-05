@@ -64,7 +64,17 @@ export function getErrorOrElse<T, U>(value: U): (result: Result<T, U>) => U {
   };
 }
 
-export function map() {}
+export function map<T, U, T1>(
+  fn: (value: T) => T1,
+): (result: Result<T, U>) => Result<T1, U> {
+  return (result) => {
+    if (result._tag === 'Ok') {
+      return ok(fn(result.value));
+    } else {
+      return result as Result<T1, U>;
+    }
+  };
+}
 
 export function mapError() {}
 
