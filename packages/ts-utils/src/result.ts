@@ -54,7 +54,15 @@ export function getOrElse<T, U>(value: T): (result: Result<T, U>) => T {
   };
 }
 
-export function getErrorOrElse() {}
+export function getErrorOrElse<T, U>(value: U): (result: Result<T, U>) => U {
+  return (result: Result<T, U>): U => {
+    if (result._tag === 'Error') {
+      return result.value;
+    } else {
+      return value;
+    }
+  };
+}
 
 export function map() {}
 

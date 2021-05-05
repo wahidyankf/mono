@@ -6,6 +6,7 @@ import {
   get,
   getOrElse,
   getError,
+  getErrorOrElse,
 } from '../src/result';
 import {some, none} from '../src/option';
 
@@ -90,5 +91,17 @@ describe('getOrElse works correctly', () => {
   test('getOrElse returns the default value on error', () => {
     expect(getOrElse('default')(error('string'))).toEqual('default');
     expect(getOrElse(0)(error(1))).toEqual(0);
+  });
+});
+
+describe('getErrorOrElse works correctly', () => {
+  test('getErrorOrElse returns the value on error', () => {
+    expect(getErrorOrElse('default')(error('string'))).toEqual('string');
+    expect(getErrorOrElse(0)(error(1))).toEqual(1);
+  });
+
+  test('getErrorOrElse returns the default value on ok', () => {
+    expect(getErrorOrElse('default')(ok('string'))).toEqual('default');
+    expect(getErrorOrElse(0)(ok(1))).toEqual(0);
   });
 });
