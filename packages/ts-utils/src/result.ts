@@ -14,7 +14,10 @@ export function ok<T, U>(val: T): Result<T, U> {
   return {_tag: 'Ok', value: val};
 }
 
-export function error() {}
+export function error<T, U>(val: U): Result<T, U> {
+  return {_tag: 'Error', value: val};
+}
+
 export function isOk() {}
 export function isError() {}
 export function map() {}
