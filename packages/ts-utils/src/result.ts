@@ -44,7 +44,15 @@ export function getError<T, U>(result: Result<T, U>): Option<U> {
   }
 }
 
-export function getOrElse() {}
+export function getOrElse<T, U>(value: T): (result: Result<T, U>) => T {
+  return (result: Result<T, U>): T => {
+    if (result._tag === 'Ok') {
+      return result.value;
+    } else {
+      return value;
+    }
+  };
+}
 
 export function getErrorOrElse() {}
 

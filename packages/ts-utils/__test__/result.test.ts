@@ -1,4 +1,12 @@
-import {ok, error, isOk, isError, get, getError} from '../src/result';
+import {
+  ok,
+  error,
+  isOk,
+  isError,
+  get,
+  getOrElse,
+  getError,
+} from '../src/result';
 import {some, none} from '../src/option';
 
 describe('ok works correctly', () => {
@@ -70,5 +78,17 @@ describe('getError works correctly', () => {
   test('getError returns none on ok', () => {
     expect(getError(ok('string'))).toEqual(none());
     expect(getError(ok(1))).toEqual(none());
+  });
+});
+
+describe('getOrElse works correctly', () => {
+  test('getOrElse returns the value on ok', () => {
+    expect(getOrElse('default')(ok('string'))).toEqual('string');
+    expect(getOrElse(0)(ok(1))).toEqual(1);
+  });
+
+  test('getOrElse returns the default value on error', () => {
+    expect(getOrElse('default')(error('string'))).toEqual('default');
+    expect(getOrElse(0)(error(1))).toEqual(0);
   });
 });
