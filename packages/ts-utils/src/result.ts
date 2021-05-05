@@ -28,7 +28,7 @@ export function isError<T, U>(result: Result<T, U>): boolean {
   return result._tag === 'Error';
 }
 
-export function get<T, U>(result: Result<T, U>): Option<T> {
+export function getOk<T, U>(result: Result<T, U>): Option<T> {
   if (result._tag === 'Ok') {
     return option.some(result.value);
   } else {
@@ -44,7 +44,7 @@ export function getError<T, U>(result: Result<T, U>): Option<U> {
   }
 }
 
-export function getOrElse<T, U>(value: T): (result: Result<T, U>) => T {
+export function getOkOrElse<T, U>(value: T): (result: Result<T, U>) => T {
   return (result: Result<T, U>): T => {
     if (result._tag === 'Ok') {
       return result.value;
@@ -64,7 +64,7 @@ export function getErrorOrElse<T, U>(value: U): (result: Result<T, U>) => U {
   };
 }
 
-export function map<T, U, T1>(
+export function mapOk<T, U, T1>(
   fn: (value: T) => T1,
 ): (result: Result<T, U>) => Result<T1, U> {
   return (result) => {
@@ -88,7 +88,7 @@ export function mapError<T, U, U1>(
   };
 }
 
-export function flatMap<T, U, T1>(
+export function flatMapOk<T, U, T1>(
   fn: (value: T) => Result<T1, U>,
 ): (result: Result<T, U>) => Result<T1, U> {
   return (result: Result<T, U>) => {
@@ -117,12 +117,12 @@ export default {
   error,
   isOk,
   isError,
-  get,
+  getOk,
   getError,
-  getOrElse,
+  getOkOrElse,
   getErrorOrElse,
-  map,
+  mapOk,
   mapError,
-  flatMap,
+  flatMapOk,
   flatMapError,
 };

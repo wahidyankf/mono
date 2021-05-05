@@ -17,13 +17,13 @@ describe('All utils are exported', () => {
     expect(utils.result).toHaveProperty('error');
     expect(utils.result).toHaveProperty('isOk');
     expect(utils.result).toHaveProperty('isError');
-    expect(utils.result).toHaveProperty('map');
+    expect(utils.result).toHaveProperty('mapOk');
     expect(utils.result).toHaveProperty('mapError');
-    expect(utils.result).toHaveProperty('flatMap');
+    expect(utils.result).toHaveProperty('flatMapOk');
     expect(utils.result).toHaveProperty('flatMapError');
-    expect(utils.result).toHaveProperty('get');
+    expect(utils.result).toHaveProperty('getOk');
     expect(utils.result).toHaveProperty('getError');
-    expect(utils.result).toHaveProperty('getOrElse');
+    expect(utils.result).toHaveProperty('getOkOrElse');
     expect(utils.result).toHaveProperty('getErrorOrElse');
   });
 });

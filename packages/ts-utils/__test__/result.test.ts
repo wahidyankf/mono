@@ -3,13 +3,13 @@ import {
   error,
   isOk,
   isError,
-  get,
-  getOrElse,
+  getOk,
+  getOkOrElse,
   getError,
   getErrorOrElse,
-  map,
+  mapOk,
   mapError,
-  flatMap,
+  flatMapOk,
   flatMapError,
 } from '../src/result';
 import {some, none} from '../src/option';
@@ -62,15 +62,15 @@ describe('isError works correctly', () => {
   });
 });
 
-describe('get works correctly', () => {
-  test('get returns some value on ok', () => {
-    expect(get(ok('string'))).toEqual(some('string'));
-    expect(get(ok(1))).toEqual(some(1));
+describe('getOk works correctly', () => {
+  test('getOk returns some value on ok', () => {
+    expect(getOk(ok('string'))).toEqual(some('string'));
+    expect(getOk(ok(1))).toEqual(some(1));
   });
 
-  test('get returns none on error', () => {
-    expect(get(error('string'))).toEqual(none());
-    expect(get(error(1))).toEqual(none());
+  test('getOk returns none on error', () => {
+    expect(getOk(error('string'))).toEqual(none());
+    expect(getOk(error(1))).toEqual(none());
   });
 });
 
@@ -86,15 +86,15 @@ describe('getError works correctly', () => {
   });
 });
 
-describe('getOrElse works correctly', () => {
-  test('getOrElse returns the value on ok', () => {
-    expect(getOrElse('default')(ok('string'))).toEqual('string');
-    expect(getOrElse(0)(ok(1))).toEqual(1);
+describe('getOkOrElse works correctly', () => {
+  test('getOkOrElse returns the value on ok', () => {
+    expect(getOkOrElse('default')(ok('string'))).toEqual('string');
+    expect(getOkOrElse(0)(ok(1))).toEqual(1);
   });
 
-  test('getOrElse returns the default value on error', () => {
-    expect(getOrElse('default')(error('string'))).toEqual('default');
-    expect(getOrElse(0)(error(1))).toEqual(0);
+  test('getOkOrElse returns the default value on error', () => {
+    expect(getOkOrElse('default')(error('string'))).toEqual('default');
+    expect(getOkOrElse(0)(error(1))).toEqual(0);
   });
 });
 
@@ -110,23 +110,23 @@ describe('getErrorOrElse works correctly', () => {
   });
 });
 
-describe('map works correctly', () => {
-  test('map successfully maps the ok value', () => {
-    expect(map((s: string) => 'hello ' + s)(ok('string'))).toEqual({
+describe('mapOk works correctly', () => {
+  test('mapOk successfully mapOk the ok value', () => {
+    expect(mapOk((s: string) => 'hello ' + s)(ok('string'))).toEqual({
       _tag: 'Ok',
       value: 'hello string',
     });
-    expect(map((x: number) => x * 2)(ok(1))).toEqual({
+    expect(mapOk((x: number) => x * 2)(ok(1))).toEqual({
       _tag: 'Ok',
       value: 1 * 2,
     });
   });
-  test('map skips the operation on error', () => {
-    expect(map((s: string) => 'hello ' + s)(error('string'))).toEqual({
+  test('mapOk skips the operation on error', () => {
+    expect(mapOk((s: string) => 'hello ' + s)(error('string'))).toEqual({
       _tag: 'Error',
       value: 'string',
     });
-    expect(map((x: number) => x * 2)(error(1))).toEqual({
+    expect(mapOk((x: number) => x * 2)(error(1))).toEqual({
       _tag: 'Error',
       value: 1,
     });
@@ -156,23 +156,25 @@ describe('mapError works correctly', () => {
   });
 });
 
-describe('flatMap works correctly', () => {
-  test('flatMap successfully maps the ok value', () => {
-    expect(flatMap((s: string) => ok('hello ' + s))(ok('string'))).toEqual({
+describe('flatMapOk works correctly', () => {
+  test('flatMapOk successfully maps the ok value', () => {
+    expect(flatMapOk((s: string) => ok('hello ' + s))(ok('string'))).toEqual({
       _tag: 'Ok',
       value: 'hello string',
     });
-    expect(flatMap((x: number) => ok(x * 2))(ok(1))).toEqual({
+    expect(flatMapOk((x: number) => ok(x * 2))(ok(1))).toEqual({
       _tag: 'Ok',
       value: 1 * 2,
     });
   });
-  test('flatMap skips the operation on error', () => {
-    expect(flatMap((s: string) => ok('hello ' + s))(error('string'))).toEqual({
-      _tag: 'Error',
-      value: 'string',
-    });
-    expect(flatMap((x: number) => ok(x * 2))(error(1))).toEqual({
+  test('flatMapOk skips the operation on error', () => {
+    expect(flatMapOk((s: string) => ok('hello ' + s))(error('string'))).toEqual(
+      {
+        _tag: 'Error',
+        value: 'string',
+      },
+    );
+    expect(flatMapOk((x: number) => ok(x * 2))(error(1))).toEqual({
       _tag: 'Error',
       value: 1,
     });
