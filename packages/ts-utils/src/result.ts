@@ -26,14 +26,6 @@ export function isError<T, U>(result: Result<T, U>): boolean {
   return result._tag === 'Error';
 }
 
-export function map() {}
-
-export function mapError() {}
-
-export function flatMap() {}
-
-export function flatMapError() {}
-
 export function get() {}
 
 export function getError() {}
@@ -42,17 +34,25 @@ export function getOrElse() {}
 
 export function getErrorOrElse() {}
 
+export function map() {}
+
+export function mapError() {}
+
+export function flatMap() {}
+
+export function flatMapError() {}
+
 export default {
   ok,
   error,
   isOk,
   isError,
-  map,
-  mapError,
-  flatMap,
-  flatMapError,
   get,
   getError,
   getOrElse,
   getErrorOrElse,
+  map,
+  mapError,
+  flatMap,
+  flatMapError,
 };
