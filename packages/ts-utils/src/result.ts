@@ -1,3 +1,5 @@
+import option, {none, Option} from './option';
+
 interface Ok<T> {
   readonly _tag: 'Ok';
   readonly value: T;
@@ -26,7 +28,13 @@ export function isError<T, U>(result: Result<T, U>): boolean {
   return result._tag === 'Error';
 }
 
-export function get() {}
+export function get<T, U>(result: Result<T, U>): Option<T> {
+  if (result._tag === 'Ok') {
+    return option.some(result.value);
+  } else {
+    return option.none();
+  }
+}
 
 export function getError() {}
 

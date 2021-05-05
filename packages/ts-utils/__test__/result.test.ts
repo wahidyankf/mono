@@ -1,4 +1,5 @@
-import {ok, error, isOk, isError, map} from '../src/result';
+import {ok, error, isOk, isError, get} from '../src/result';
+import {some, none} from '../src/option';
 
 describe('ok works correctly', () => {
   test('ok generate tag correctly', () => {
@@ -57,5 +58,17 @@ describe('isError works correctly', () => {
 
   test('isError returns false on okNumber', () => {
     expect(isError(ok(1))).toEqual(false);
+  });
+});
+
+describe('get works correctly', () => {
+  test('get returns some value on ok', () => {
+    expect(get(ok('string'))).toEqual(some('string'));
+    expect(get(ok(1))).toEqual(some(1));
+  });
+
+  test('get returns none on error', () => {
+    expect(get(error('string'))).toEqual(none());
+    expect(get(error(1))).toEqual(none());
   });
 });
