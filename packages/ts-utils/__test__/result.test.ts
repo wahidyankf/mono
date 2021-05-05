@@ -8,6 +8,7 @@ import {
   getError,
   getErrorOrElse,
   map,
+  mapError,
 } from '../src/result';
 import {some, none} from '../src/option';
 
@@ -125,6 +126,29 @@ describe('map works correctly', () => {
     });
     expect(map((x: number) => x * 2)(error(1))).toEqual({
       _tag: 'Error',
+      value: 1,
+    });
+  });
+});
+
+describe('mapError works correctly', () => {
+  test('mapError successfully maps the error value', () => {
+    expect(mapError((s: string) => 'hello ' + s)(error('string'))).toEqual({
+      _tag: 'Error',
+      value: 'hello string',
+    });
+    expect(mapError((x: number) => x * 2)(error(1))).toEqual({
+      _tag: 'Error',
+      value: 1 * 2,
+    });
+  });
+  test('mapError skips the operation on ok', () => {
+    expect(mapError((s: string) => 'hello ' + s)(ok('string'))).toEqual({
+      _tag: 'Ok',
+      value: 'string',
+    });
+    expect(mapError((x: number) => x * 2)(ok(1))).toEqual({
+      _tag: 'Ok',
       value: 1,
     });
   });

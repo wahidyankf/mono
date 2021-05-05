@@ -76,7 +76,17 @@ export function map<T, U, T1>(
   };
 }
 
-export function mapError() {}
+export function mapError<T, U, U1>(
+  fn: (value: U) => U1,
+): (result: Result<T, U>) => Result<T, U1> {
+  return (result) => {
+    if (result._tag === 'Error') {
+      return error(fn(result.value));
+    } else {
+      return result as Result<T, U1>;
+    }
+  };
+}
 
 export function flatMap() {}
 
