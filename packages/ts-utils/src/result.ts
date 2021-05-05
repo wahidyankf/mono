@@ -18,7 +18,10 @@ export function error<T, U>(val: U): Result<T, U> {
   return {_tag: 'Error', value: val};
 }
 
-export function isOk() {}
+export function isOk<T, U>(opt: Result<T, U>): boolean {
+  return opt._tag === 'Ok';
+}
+
 export function isError() {}
 export function map() {}
 export function mapError() {}
