@@ -13,46 +13,48 @@ export function none<T>(): Option<T> {
   return {_tag: 'None'};
 }
 
-export function some<T>(val: T): Option<T> {
-  return {_tag: 'Some', value: val};
+export function some<T>(value: T): Option<T> {
+  return {_tag: 'Some', value};
 }
 
-export function isSome<T>(opt: Option<T>): boolean {
-  return opt._tag === 'Some';
+export function isSome<T>(option: Option<T>): boolean {
+  return option._tag === 'Some';
 }
 
-export function isNone<T>(opt: Option<T>): boolean {
-  return opt._tag === 'None';
+export function isNone<T>(option: Option<T>): boolean {
+  return option._tag === 'None';
 }
 
-export function map<T, U>(fn: (val: T) => U): (opt: Option<T>) => Option<U> {
-  return (opt) => {
-    if (opt._tag === 'Some') {
-      return some(fn(opt.value));
+export function getOrElse<T>(value: T): (option: Option<T>) => T {
+  return (option: Option<T>): T => {
+    if (option._tag === 'Some') {
+      return option.value;
     } else {
-      return opt as Option<U>;
+      return value;
+    }
+  };
+}
+
+export function map<T, U>(
+  fn: (value: T) => U,
+): (option: Option<T>) => Option<U> {
+  return (option) => {
+    if (option._tag === 'Some') {
+      return some(fn(option.value));
+    } else {
+      return option as Option<U>;
     }
   };
 }
 
 export function flatMap<T, U>(
-  fn: (val: T) => Option<U>,
-): (opt: Option<T>) => Option<U> {
-  return (opt: Option<T>) => {
-    if (opt._tag === 'Some') {
-      return fn(opt.value);
+  fn: (value: T) => Option<U>,
+): (option: Option<T>) => Option<U> {
+  return (option: Option<T>) => {
+    if (option._tag === 'Some') {
+      return fn(option.value);
     } else {
-      return opt as Option<U>;
-    }
-  };
-}
-
-export function getOrElse<T>(val: T): (opt: Option<T>) => T {
-  return (opt: Option<T>): T => {
-    if (opt._tag === 'Some') {
-      return opt.value;
-    } else {
-      return val;
+      return option as Option<U>;
     }
   };
 }
