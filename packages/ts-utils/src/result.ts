@@ -10,4 +10,30 @@ interface Error<T> {
 
 export type Result<T, U> = Ok<T> | Error<U>;
 
-export default {};
+export function ok() {}
+export function error() {}
+export function isOk() {}
+export function isError() {}
+export function map() {}
+export function mapError() {}
+export function flatMap() {}
+export function flatMapError() {}
+export function get() {}
+export function getError() {}
+export function getOrElse() {}
+export function getErrorOrElse() {}
+
+export default {
+  ok,
+  error,
+  isOk,
+  isError,
+  map,
+  mapError,
+  flatMap,
+  flatMapError,
+  get,
+  getError,
+  getOrElse,
+  getErrorOrElse,
+};

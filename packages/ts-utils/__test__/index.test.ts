@@ -13,5 +13,17 @@ describe('All utils are exported', () => {
   });
   test('result utils are exported', () => {
     expect(utils).toHaveProperty('result');
+    expect(utils.result).toHaveProperty('ok');
+    expect(utils.result).toHaveProperty('error');
+    expect(utils.result).toHaveProperty('isOk');
+    expect(utils.result).toHaveProperty('isError');
+    expect(utils.result).toHaveProperty('map');
+    expect(utils.result).toHaveProperty('mapError');
+    expect(utils.result).toHaveProperty('flatMap');
+    expect(utils.result).toHaveProperty('flatMapError');
+    expect(utils.result).toHaveProperty('get');
+    expect(utils.result).toHaveProperty('getError');
+    expect(utils.result).toHaveProperty('getOrElse');
+    expect(utils.result).toHaveProperty('getErrorOrElse');
   });
 });
