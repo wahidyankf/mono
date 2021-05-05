@@ -1,4 +1,4 @@
-import {ok, error, isOk, isError, get} from '../src/result';
+import {ok, error, isOk, isError, get, getError} from '../src/result';
 import {some, none} from '../src/option';
 
 describe('ok works correctly', () => {
@@ -58,5 +58,17 @@ describe('get works correctly', () => {
   test('get returns none on error', () => {
     expect(get(error('string'))).toEqual(none());
     expect(get(error(1))).toEqual(none());
+  });
+});
+
+describe('getError works correctly', () => {
+  test('getError returns some value on error', () => {
+    expect(getError(error('string'))).toEqual(some('string'));
+    expect(getError(error(1))).toEqual(some(1));
+  });
+
+  test('getError returns none on ok', () => {
+    expect(getError(ok('string'))).toEqual(none());
+    expect(getError(ok(1))).toEqual(none());
   });
 });

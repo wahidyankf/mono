@@ -36,7 +36,13 @@ export function get<T, U>(result: Result<T, U>): Option<T> {
   }
 }
 
-export function getError() {}
+export function getError<T, U>(result: Result<T, U>): Option<U> {
+  if (result._tag === 'Error') {
+    return option.some(result.value);
+  } else {
+    return option.none();
+  }
+}
 
 export function getOrElse() {}
 
