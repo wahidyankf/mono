@@ -1,3 +1,4 @@
 import option from './option';
+import result from './result';
 
-export {option};
+export {option, result};
