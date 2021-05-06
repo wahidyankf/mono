@@ -12,7 +12,9 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "husky": ">=6",
     "jest": "^26.6.3",
+    "lint-staged": ">=10",
     "nodemon": "^2.0.7",
     "oao": "^2.0.2",
     "prettier": "^2.2.1",
@@ -26,6 +28,10 @@
     "clean": "npx oao clean",
     "build": "npx oao all \"yarn run build\" --tree",
     "test": "yarn build && npx oao all \"yarn run test\" --parallel && echo all test passed",
-    "test:watch": "yarn build && npx oao all \"yarn run test:watch\" --parallel"
+    "test:watch": "yarn build && npx oao all \"yarn run test:watch\" --parallel",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
