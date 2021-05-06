@@ -5,7 +5,7 @@ function add1(x) {
 }
 
 function addS(s) {
-  return s + 's';
+  return s + 'x';
 }
 
 describe('pipe works correctly', () => {
