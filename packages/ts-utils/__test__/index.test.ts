@@ -26,4 +26,7 @@ describe('All utils are exported', () => {
     expect(utils.result).toHaveProperty('getOrElse');
     expect(utils.result).toHaveProperty('getErrorOrElse');
   });
+  test('result utils are exported', () => {
+    expect(utils).toHaveProperty('pipe');
+  });
 });
