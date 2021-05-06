@@ -1,6 +1,9 @@
 import * as utils from '../src/index';
 
 describe('All utils are exported', () => {
+  test('attempt utils are exported', () => {
+    expect(utils).toHaveProperty('attempt');
+  });
   test('option utils are exported', () => {
     expect(utils).toHaveProperty('option');
     expect(utils.option).toHaveProperty('some');
