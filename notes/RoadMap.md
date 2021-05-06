@@ -4,8 +4,7 @@ I plan to keep pourint this repo with more goodies overtime. Here are some of th
 
 ## Monorepo governance
 
-- Implement/expolore testing in all packages, implement it in hooks
-- Add formatting hooks during push
+- Update monorepo to only build and test whatever necessary (changes)
 
 ## Utilities
 
