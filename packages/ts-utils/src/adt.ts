@@ -18,4 +18,6 @@ export function match<T extends Match, R = unknown>(
   return (x) => pattern[x._tag](x);
 }
 
+// TODO: Update the ADT, by taking: https://github.com/pfgray/ts-adt/blob/master/src/ADT.ts as reference
+
 export default {match};
