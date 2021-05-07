@@ -14,6 +14,9 @@ describe('All utils are exported', () => {
     expect(utils.option).toHaveProperty('flatMap');
     expect(utils.option).toHaveProperty('getOrElse');
   });
+  test('pipe utils are exported', () => {
+    expect(utils).toHaveProperty('pipe');
+  });
   test('result utils are exported', () => {
     expect(utils).toHaveProperty('result');
     expect(utils.result).toHaveProperty('ok');
@@ -28,8 +31,5 @@ describe('All utils are exported', () => {
     expect(utils.result).toHaveProperty('getError');
     expect(utils.result).toHaveProperty('getOrElse');
     expect(utils.result).toHaveProperty('getErrorOrElse');
-  });
-  test('result utils are exported', () => {
-    expect(utils).toHaveProperty('pipe');
   });
 });
