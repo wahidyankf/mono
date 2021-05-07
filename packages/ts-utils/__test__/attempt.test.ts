@@ -3,14 +3,14 @@ import {ok, error} from '../src/result';
 import {some} from '../src/option';
 
 describe('attempt works correctly', () => {
-  test('attempt generates tags correctly', () => {
+  test('it generates tags correctly', () => {
     expect(attempt(() => eval('null.test'))).toHaveProperty('_tag');
     expect(attempt(() => eval('null.test'))).toHaveProperty('value');
     expect(attempt(() => 'str')).toHaveProperty('_tag');
     expect(attempt(() => 'str')).toHaveProperty('value');
   });
 
-  test('attempt correctly returns successful result', () => {
+  test('it correctly returns successful result', () => {
     expect(attempt(() => 'str')).toEqual(ok('str'));
     expect(attempt(() => 1)).toEqual(ok(1));
     expect(attempt(() => some('str'))).toEqual(ok(some('str')));
@@ -18,7 +18,7 @@ describe('attempt works correctly', () => {
     expect(attempt(() => {})).toEqual(ok(undefined));
   });
 
-  test('attempt correctly returns error result on default error message key', () => {
+  test('it correctly returns error result on default error message key', () => {
     expect(attempt(() => eval('null.test'))).toEqual(
       error("Cannot read property 'test' of null"),
     );
@@ -34,7 +34,7 @@ describe('attempt works correctly', () => {
     ).toEqual(error('some error message'));
   });
 
-  test('attempt correctly returns error result on custom error message key', () => {
+  test('it correctly returns error result on custom error message key', () => {
     expect(attempt(() => eval('null.test'), 'description')).toEqual(
       error('{}'),
     );

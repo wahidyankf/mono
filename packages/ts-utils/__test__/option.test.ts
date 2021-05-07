@@ -9,24 +9,24 @@ import {
 } from '../src/option';
 
 describe('some works correctly', () => {
-  test('some generate tag correctly', () => {
+  test('some generates tag correctly', () => {
     expect(some('string')).toHaveProperty('_tag');
     expect(some('string')).toHaveProperty('value');
   });
 
-  test('some generate value correctly', () => {
+  test('some generates value correctly', () => {
     expect(some('string')).toEqual({_tag: 'Some', value: 'string'});
     expect(some(1)).toEqual({_tag: 'Some', value: 1});
   });
 });
 
 describe('none works correctly', () => {
-  test('none generate tag correctly', () => {
+  test('none generates tag correctly', () => {
     expect(none()).toHaveProperty('_tag');
     expect(none()).not.toHaveProperty('value');
   });
 
-  test('none generate value correctly', () => {
+  test('none generates value correctly', () => {
     expect(none()).toEqual({_tag: 'None'});
   });
 });
