@@ -1,6 +1,10 @@
 import * as utils from '../src/index';
 
 describe('All utils are exported', () => {
+  test('adt utils are exported', () => {
+    expect(utils).toHaveProperty('adt');
+    expect(utils.adt).toHaveProperty('match');
+  });
   test('attempt utils are exported', () => {
     expect(utils).toHaveProperty('attempt');
   });
