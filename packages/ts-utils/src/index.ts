@@ -4,4 +4,6 @@ import pipe from './pipe';
 import attempt from './attempt';
 import adt from './adt';
 
+export type {ADT} from './adt';
+
 export {option, result, pipe, attempt, adt};

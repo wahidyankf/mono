@@ -1,13 +1,6 @@
-interface None {
-  readonly _tag: 'None';
-}
+import {ADT} from './adt';
 
-interface Some<T> {
-  readonly _tag: 'Some';
-  readonly value: T;
-}
-
-export type Option<T> = Some<T> | None;
+export type Option<T> = ADT<{Some: {value: T}; None: {}}>;
 
 export function none<T>(): Option<T> {
   return {_tag: 'None'};

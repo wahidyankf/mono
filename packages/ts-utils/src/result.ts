@@ -1,16 +1,7 @@
-import option, {none, Option} from './option';
+import option, {Option} from './option';
+import {ADT} from './adt';
 
-interface Ok<T> {
-  readonly _tag: 'Ok';
-  readonly value: T;
-}
-
-interface Error<T> {
-  readonly _tag: 'Error';
-  readonly value: T;
-}
-
-export type Result<T, U> = Ok<T> | Error<U>;
+export type Result<T, U> = ADT<{Ok: {value: T}; Error: {value: U}}>;
 
 export function ok<T, U>(value: T): Result<T, U> {
   return {_tag: 'Ok', value};
