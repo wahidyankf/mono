@@ -1,5 +1,5 @@
 // Adapted from: https://github.com/pfgray/ts-adt
-// but changing _type to _tag
+// - Mainly changing _type to _tag
 
 /**
  * A sum-type generator. Uses the keys of the passed type as string discriminators
