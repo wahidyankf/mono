@@ -83,7 +83,7 @@ describe('matchPI works correctly', () => {
       {
         Some: ({value}) => value,
       },
-      () => 'nothing',
+      (_option) => 'nothing',
     );
 
     const noString: Option<string> = none();
@@ -91,7 +91,7 @@ describe('matchPI works correctly', () => {
       {
         Some: ({value}) => value,
       },
-      () => 'nothing',
+      (_option) => 'nothing',
     );
 
     expect(someStringRes).toEqual('str');
@@ -104,7 +104,7 @@ describe('matchPI works correctly', () => {
       {
         Error: ({value}) => value,
       },
-      () => 'ok string',
+      (_result) => 'ok string',
     );
 
     const errorString: Result<string, string> = error('error string');
@@ -112,7 +112,7 @@ describe('matchPI works correctly', () => {
       {
         Error: ({value}) => value,
       },
-      () => 'ok string',
+      (_result) => 'ok string',
     );
 
     expect(okStringRes).toEqual('ok string');
