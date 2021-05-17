@@ -1,12 +1,6 @@
-import {
-  some,
-  isSome,
-  none,
-  isNone,
-  flatMap,
-  map,
-  getOrElse,
-} from '../src/option';
+import {option} from '../src';
+
+const {some, isSome, none, isNone, flatMap, map, getOrElse} = option;
 
 describe('some works correctly', () => {
   test('some generates tag correctly', () => {

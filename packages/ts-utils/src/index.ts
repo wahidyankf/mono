@@ -1,9 +1,8 @@
-import option from './option';
-import result from './result';
-import pipe from './pipe';
-import attempt from './attempt';
-import adt from './adt';
-
+export {attempt} from './attempt';
+export * as adt from './adt';
+export * as option from './option';
+export {pipe} from './pipe';
+export * as result from './result';
 export type {ADT} from './adt';
-
-export {option, result, pipe, attempt, adt};
+export type {Option} from './option';
+export type {Result} from './result';

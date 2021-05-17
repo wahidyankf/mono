@@ -1,4 +1,4 @@
-import pipe from '../src/pipe';
+import {pipe} from '../src';
 
 function add1(x) {
   return x + 1;

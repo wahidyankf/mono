@@ -1,4 +1,4 @@
-import * as utils from '../src/index';
+import * as utils from '../src';
 
 describe('All utils are exported', () => {
   test('adt utils are exported', () => {

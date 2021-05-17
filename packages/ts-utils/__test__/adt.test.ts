@@ -1,6 +1,8 @@
-import {some, none, Option} from '../src/option';
-import {ok, error, Result} from '../src/result';
-import {matchI} from '../src/adt';
+import {result, option, adt, Option, Result} from '../src';
+
+const {some, none} = option;
+const {ok, error} = result;
+const {matchI} = adt;
 
 describe('matchI works correctly', () => {
   test('matchI works correctly for option', () => {
