@@ -1,4 +1,4 @@
-// Inspired by: https://github.com/pfgray/ts-adt
+// Adapted from: https://github.com/pfgray/ts-adt
 // but changing _type to _tag
 
 /**
