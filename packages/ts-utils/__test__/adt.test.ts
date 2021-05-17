@@ -2,7 +2,7 @@ import {result, option, adt, Option, Result} from '../src';
 
 const {some, none} = option;
 const {ok, error} = result;
-const {match, matchI} = adt;
+const {match, matchI, matchPI} = adt;
 
 describe('match works correctly', () => {
   test('match works correctly for option', () => {
@@ -70,6 +70,50 @@ describe('matchI works correctly', () => {
       Ok: ({value}) => value,
       Error: ({value}) => value,
     });
+
+    expect(okStringRes).toEqual('ok string');
+    expect(errorStringRes).toEqual('error string');
+  });
+});
+
+describe('matchPI works correctly', () => {
+  test('matchPI works correctly for option', () => {
+    const someString = some('str');
+    const someStringRes = matchPI(someString)(
+      {
+        Some: ({value}) => value,
+      },
+      () => 'nothing',
+    );
+
+    const noString: Option<string> = none();
+    const noStringRes = matchPI(noString)(
+      {
+        Some: ({value}) => value,
+      },
+      () => 'nothing',
+    );
+
+    expect(someStringRes).toEqual('str');
+    expect(noStringRes).toEqual('nothing');
+  });
+
+  test('matchPI works correctly for result', () => {
+    const okString: Result<string, string> = ok('ok string');
+    const okStringRes = matchPI(okString)(
+      {
+        Error: ({value}) => value,
+      },
+      () => 'ok string',
+    );
+
+    const errorString: Result<string, string> = error('error string');
+    const errorStringRes = matchPI(errorString)(
+      {
+        Error: ({value}) => value,
+      },
+      () => 'ok string',
+    );
 
     expect(okStringRes).toEqual('ok string');
     expect(errorStringRes).toEqual('error string');
