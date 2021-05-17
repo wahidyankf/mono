@@ -1,6 +1,7 @@
-import {attempt} from '../src/attempt';
-import {ok, error} from '../src/result';
-import {some} from '../src/option';
+import {attempt, result, option} from '../src';
+
+const {ok, error} = result;
+const {some} = option;
 
 describe('attempt works correctly', () => {
   test('it generates tags correctly', () => {

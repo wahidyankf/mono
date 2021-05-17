@@ -1,4 +1,6 @@
-import {
+import {option, result} from '../src';
+
+const {
   ok,
   error,
   isOk,
@@ -11,8 +13,8 @@ import {
   mapError,
   flatMap,
   flatMapError,
-} from '../src/result';
-import {some, none} from '../src/option';
+} = result;
+const {some, none} = option;
 
 describe('ok works correctly', () => {
   test('ok generates tag correctly', () => {
