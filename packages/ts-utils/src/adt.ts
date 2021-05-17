@@ -172,28 +172,6 @@ function makeMatchPI<D extends string>(
 }
 
 /**
- * Generate match functions that switch on a specified discriminant field
- *
- * ```ts
- * import * as O from "fp-ts/Option";
- *
- * const [match, matchP, matchI, matchPI] = makeMatchers("_tag");
- *
- * pipe(
- *   O.fromNullable("value"),
- *   match({
- *     None: () => 0,
- *     Some: (v) => v.value,
- *   })
- * );
- * ```
- *
- * @param d the discriminant field to use
- */
-const makeMatchers = <D extends string>(d: D) =>
-  [makeMatch(d), makeMatchP(d), makeMatchI(d), makeMatchPI(d)] as const;
-
-/**
  * A sum-type generator. Uses the keys of the passed type as string discriminators
  *
  *
@@ -212,64 +190,65 @@ const makeMatchers = <D extends string>(d: D) =>
  */
 export type ADT<T extends Record<string, {}>> = MakeADT<'_tag', T>;
 
-export const [
-  /**
-   * Pattern matching for a sum type defined with ADT, with
-   * discriminant field "_tag"
-   *
-   * ```ts
-   * declare const foo: Option<string>
-   *
-   * pipe(
-   *   foo,
-   *   match({
-   *     none: () => 'none',
-   *     some: ({value}) => 'some'
-   *   })
-   * )
-   * ```
-   */
-  match,
-  /**
-   * Partial pattern matching for a sum type defined with ADT
-   *
-   * ```ts
-   * declare const foo: Option<string>
-   *
-   * pipe(
-   *   foo,
-   *   matchP({
-   *     some: ({value}) => 'some'
-   *   }, (_option) => 'none')
-   * )
-   * ```
-   */
-  matchP,
-  /**
-   * Inverted version of match, useful for better inference in some circumstances
-   *
-   * ```ts
-   * declare const foo: Option<string>
-   *
-   * matchI(foo)({
-   *   none: () => 'none',
-   *   some: ({value}) => 'some'
-   * })
-   * ```
-   */
-  matchI,
-  /**
-   * Inverted version of matchP, useful for better inference in some circumstances
-   *
-   * ```ts
-   * declare const foo: Option<string>
-   *
-   * matchPI(foo)({
-   *   some: ({value}) => 'some'
-   * }, (_option) => 'none')
-   * ```
-   */
-  matchPI,
-] = makeMatchers('_tag');
+/**
+ * Pattern matching for a sum type defined with ADT, with
+ * discriminant field "_tag"
+ *
+ * ```ts
+ * declare const foo: Option<string>
+ *
+ * pipe(
+ *   foo,
+ *   match({
+ *     none: () => 'none',
+ *     some: ({value}) => 'some'
+ *   })
+ * )
+ * ```
+ */
+export const match = makeMatch('_tag');
+
+/**
+ * Inverted version of match, useful for better inference in some circumstances
+ *
+ * ```ts
+ * declare const foo: Option<string>
+ *
+ * matchI(foo)({
+ *   none: () => 'none',
+ *   some: ({value}) => 'some'
+ * })
+ * ```
+ */
+export const matchI = makeMatchI('_tag');
+
+/**
+ * Partial pattern matching for a sum type defined with ADT
+ *
+ * ```ts
+ * declare const foo: Option<string>
+ *
+ * pipe(
+ *   foo,
+ *   matchP({
+ *     some: ({value}) => 'some'
+ *   }, (_option) => 'none')
+ * )
+ * ```
+ */
+export const matchP = makeMatchP('_tag');
+
+/**
+ * Inverted version of matchP, useful for better inference in some circumstances
+ *
+ * ```ts
+ * declare const foo: Option<string>
+ *
+ * matchPI(foo)({
+ *   some: ({value}) => 'some'
+ * }, (_option) => 'none')
+ * ```
+ */
+export const matchPI = makeMatchPI('_tag');
 
 export default {match, matchI, matchP, matchPI};
