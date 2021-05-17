@@ -7,7 +7,7 @@ const {match, matchI, matchPI} = adt;
 describe('match works correctly', () => {
   test('match works correctly for option', () => {
     const someString = some('str');
-    const someStringRes: string = match({
+    const someStringRes = match({
       Some: ({value}) => value,
       None: () => 'nothing',
     })(someString);
