@@ -2,7 +2,7 @@ import {result, option, adt, Option, Result} from '../src';
 
 const {some, none} = option;
 const {ok, error} = result;
-const {match, matchLast, matchP} = adt;
+const {match, matchLast, matchP, matchPLast} = adt;
 
 describe('match works correctly', () => {
   test('match works correctly for option', () => {
@@ -114,6 +114,50 @@ describe('matchP works correctly', () => {
       },
       (_result) => 'ok string',
     );
+
+    expect(okStringRes).toEqual('ok string');
+    expect(errorStringRes).toEqual('error string');
+  });
+});
+
+describe('matchPLast works correctly', () => {
+  test('matchPLast works correctly for option', () => {
+    const someString = some('str');
+    const someStringRes = matchPLast(
+      {
+        Some: ({value}) => value,
+      },
+      (_option) => 'nothing',
+    )(someString);
+
+    const noString: Option<string> = none();
+    const noStringRes = matchPLast(
+      {
+        Some: ({value}) => value,
+      },
+      (_option) => 'nothing',
+    )(noString);
+
+    expect(someStringRes).toEqual('str');
+    expect(noStringRes).toEqual('nothing');
+  });
+
+  test('matchPLast works correctly for result', () => {
+    const okString: Result<string, string> = ok('ok string');
+    const okStringRes = matchPLast(
+      {
+        Error: ({value}) => value,
+      },
+      (_result) => 'ok string',
+    )(okString);
+
+    const errorString: Result<string, string> = error('error string');
+    const errorStringRes = matchPLast(
+      {
+        Error: ({value}) => value,
+      },
+      (_result) => 'ok string',
+    )(errorString);
 
     expect(okStringRes).toEqual('ok string');
     expect(errorStringRes).toEqual('error string');
