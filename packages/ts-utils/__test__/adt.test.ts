@@ -2,18 +2,18 @@ import {result, option, adt, Option, Result} from '../src';
 
 const {some, none} = option;
 const {ok, error} = result;
-const {match, matchI, matchPI} = adt;
+const {match, matchLast, matchP} = adt;
 
-describe('match works correctly', () => {
-  test('match works correctly for option', () => {
+describe('matchLast works correctly', () => {
+  test('matchLast works correctly for option', () => {
     const someString = some('str');
-    const someStringRes = match({
+    const someStringRes = matchLast({
       Some: ({value}) => value,
       None: () => 'nothing',
     })(someString);
 
     const noString: Option<string> = none();
-    const noStringRes = match({
+    const noStringRes = matchLast({
       Some: ({value}) => value,
       None: () => 'nothing',
     })(noString);
@@ -22,15 +22,15 @@ describe('match works correctly', () => {
     expect(noStringRes).toEqual('nothing');
   });
 
-  test('match works correctly for result', () => {
+  test('matchLast works correctly for result', () => {
     const okString: Result<string, string> = ok('ok string');
-    const okStringRes = match({
+    const okStringRes = matchLast({
       Ok: ({value}) => value,
       Error: ({value}) => value,
     })(okString);
 
     const errorString: Result<string, string> = error('error string');
-    const errorStringRes = match({
+    const errorStringRes = matchLast({
       Ok: ({value}) => value,
       Error: ({value}) => value,
     })(errorString);
@@ -40,16 +40,16 @@ describe('match works correctly', () => {
   });
 });
 
-describe('matchI works correctly', () => {
-  test('matchI works correctly for option', () => {
+describe('match works correctly', () => {
+  test('match works correctly for option', () => {
     const someString = some('str');
-    const someStringRes = matchI(someString)({
+    const someStringRes = match(someString)({
       Some: ({value}) => value,
       None: () => 'nothing',
     });
 
     const noString: Option<string> = none();
-    const noStringRes = matchI(noString)({
+    const noStringRes = match(noString)({
       Some: ({value}) => value,
       None: () => 'nothing',
     });
@@ -58,15 +58,15 @@ describe('matchI works correctly', () => {
     expect(noStringRes).toEqual('nothing');
   });
 
-  test('matchI works correctly for result', () => {
+  test('match works correctly for result', () => {
     const okString: Result<string, string> = ok('ok string');
-    const okStringRes = matchI(okString)({
+    const okStringRes = match(okString)({
       Ok: ({value}) => value,
       Error: ({value}) => value,
     });
 
     const errorString: Result<string, string> = error('error string');
-    const errorStringRes = matchI(errorString)({
+    const errorStringRes = match(errorString)({
       Ok: ({value}) => value,
       Error: ({value}) => value,
     });
@@ -76,10 +76,10 @@ describe('matchI works correctly', () => {
   });
 });
 
-describe('matchPI works correctly', () => {
-  test('matchPI works correctly for option', () => {
+describe('matchP works correctly', () => {
+  test('matchP works correctly for option', () => {
     const someString = some('str');
-    const someStringRes = matchPI(someString)(
+    const someStringRes = matchP(someString)(
       {
         Some: ({value}) => value,
       },
@@ -87,7 +87,7 @@ describe('matchPI works correctly', () => {
     );
 
     const noString: Option<string> = none();
-    const noStringRes = matchPI(noString)(
+    const noStringRes = matchP(noString)(
       {
         Some: ({value}) => value,
       },
@@ -98,9 +98,9 @@ describe('matchPI works correctly', () => {
     expect(noStringRes).toEqual('nothing');
   });
 
-  test('matchPI works correctly for result', () => {
+  test('matchP works correctly for result', () => {
     const okString: Result<string, string> = ok('ok string');
-    const okStringRes = matchPI(okString)(
+    const okStringRes = matchP(okString)(
       {
         Error: ({value}) => value,
       },
@@ -108,7 +108,7 @@ describe('matchPI works correctly', () => {
     );
 
     const errorString: Result<string, string> = error('error string');
-    const errorStringRes = matchPI(errorString)(
+    const errorStringRes = matchP(errorString)(
       {
         Error: ({value}) => value,
       },

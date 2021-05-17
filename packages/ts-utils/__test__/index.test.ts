@@ -4,9 +4,9 @@ describe('All utils are exported', () => {
   test('adt utils are exported', () => {
     expect(utils).toHaveProperty('adt');
     expect(utils.adt).toHaveProperty('match');
-    expect(utils.adt).toHaveProperty('matchI');
+    expect(utils.adt).toHaveProperty('matchLast');
     expect(utils.adt).toHaveProperty('matchP');
-    expect(utils.adt).toHaveProperty('matchPI');
+    expect(utils.adt).toHaveProperty('matchPLast');
   });
   test('attempt utils are exported', () => {
     expect(utils).toHaveProperty('attempt');

@@ -59,14 +59,14 @@ type MakeADTMember<D extends string, ADT, Type extends string> = Extract<
  *
  * pipe(
  *   foo,
- *   makeMatch("_tag")({
+ *   makeMatchLast("_tag")({
  *     none: () => 'none',
  *     some: ({value}) => 'some'
  *   })
  * )
  * ```
  */
-function makeMatch<D extends string>(
+function makeMatchLast<D extends string>(
   d: D,
 ): <ADT extends Record<D, string>, M extends MakeMatchObj<D, ADT, unknown>>(
   matchObj: M,
@@ -82,13 +82,13 @@ function makeMatch<D extends string>(
  *
  * pipe(
  *   foo,
- *   makeMatchP("_tag")({
+ *   makeMatchPLast("_tag")({
  *     some: ({value}) => 'some'
  *   }, (_option) => 'none')
  * )
  * ```
  */
-function makeMatchP<D extends string>(
+function makeMatchPLast<D extends string>(
   d: D,
 ): <
   ADT extends Record<D, string>,
@@ -125,13 +125,13 @@ type MakePartialReturns<
  * ```ts
  * declare const foo: Option<string>
  *
- * makeMatchI('_tag')(foo)({
+ * makeMatch('_tag')(foo)({
  *   none: () => 'none',
  *   some: ({value}) => 'some'
  * })
  * ```
  */
-function makeMatchI<D extends string>(
+function makeMatch<D extends string>(
   d: D,
 ): <ADT extends Record<D, string>>(
   v: ADT,
@@ -142,17 +142,17 @@ function makeMatchI<D extends string>(
 }
 
 /**
- * Inverted version of {@link makeMatchP}, useful for better inference in some circumstances
+ * Inverted version of {@link makeMatchPLast}, useful for better inference in some circumstances
  *
  * ```ts
  * declare const foo: Option<string>
  *
- * makeMatchPI("_tag")(foo)({
+ * makeMatchP("_tag")(foo)({
  *   some: ({value}) => 'some'
  * }, (_option) => 'none')
  * ```
  */
-function makeMatchPI<D extends string>(
+function makeMatchP<D extends string>(
   d: D,
 ): <ADT extends Record<D, string>>(
   v: ADT,
@@ -206,7 +206,7 @@ export type ADT<T extends Record<string, {}>> = MakeADT<'_tag', T>;
  * )
  * ```
  */
-export const match = makeMatch('_tag');
+export const matchLast = makeMatchLast('_tag');
 
 /**
  * Inverted version of match, useful for better inference in some circumstances
@@ -220,7 +220,7 @@ export const match = makeMatch('_tag');
  * })
  * ```
  */
-export const matchI = makeMatchI('_tag');
+export const match = makeMatch('_tag');
 
 /**
  * Partial pattern matching for a sum type defined with ADT
@@ -236,7 +236,7 @@ export const matchI = makeMatchI('_tag');
  * )
  * ```
  */
-export const matchP = makeMatchP('_tag');
+export const matchPLast = makeMatchPLast('_tag');
 
 /**
  * Inverted version of matchP, useful for better inference in some circumstances
@@ -249,6 +249,6 @@ export const matchP = makeMatchP('_tag');
  * }, (_option) => 'none')
  * ```
  */
-export const matchPI = makeMatchPI('_tag');
+export const matchP = makeMatchP('_tag');
 
-export default {match, matchI, matchP, matchPI};
+export default {match, matchLast, matchP, matchPLast};
