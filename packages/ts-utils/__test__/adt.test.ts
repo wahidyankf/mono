@@ -4,42 +4,6 @@ const {some, none} = option;
 const {ok, error} = result;
 const {match, matchLast, matchP} = adt;
 
-describe('matchLast works correctly', () => {
-  test('matchLast works correctly for option', () => {
-    const someString = some('str');
-    const someStringRes = matchLast({
-      Some: ({value}) => value,
-      None: () => 'nothing',
-    })(someString);
-
-    const noString: Option<string> = none();
-    const noStringRes = matchLast({
-      Some: ({value}) => value,
-      None: () => 'nothing',
-    })(noString);
-
-    expect(someStringRes).toEqual('str');
-    expect(noStringRes).toEqual('nothing');
-  });
-
-  test('matchLast works correctly for result', () => {
-    const okString: Result<string, string> = ok('ok string');
-    const okStringRes = matchLast({
-      Ok: ({value}) => value,
-      Error: ({value}) => value,
-    })(okString);
-
-    const errorString: Result<string, string> = error('error string');
-    const errorStringRes = matchLast({
-      Ok: ({value}) => value,
-      Error: ({value}) => value,
-    })(errorString);
-
-    expect(okStringRes).toEqual('ok string');
-    expect(errorStringRes).toEqual('error string');
-  });
-});
-
 describe('match works correctly', () => {
   test('match works correctly for option', () => {
     const someString = some('str');
@@ -70,6 +34,42 @@ describe('match works correctly', () => {
       Ok: ({value}) => value,
       Error: ({value}) => value,
     });
+
+    expect(okStringRes).toEqual('ok string');
+    expect(errorStringRes).toEqual('error string');
+  });
+});
+
+describe('matchLast works correctly', () => {
+  test('matchLast works correctly for option', () => {
+    const someString = some('str');
+    const someStringRes = matchLast({
+      Some: ({value}) => value,
+      None: () => 'nothing',
+    })(someString);
+
+    const noString: Option<string> = none();
+    const noStringRes = matchLast({
+      Some: ({value}) => value,
+      None: () => 'nothing',
+    })(noString);
+
+    expect(someStringRes).toEqual('str');
+    expect(noStringRes).toEqual('nothing');
+  });
+
+  test('matchLast works correctly for result', () => {
+    const okString: Result<string, string> = ok('ok string');
+    const okStringRes = matchLast({
+      Ok: ({value}) => value,
+      Error: ({value}) => value,
+    })(okString);
+
+    const errorString: Result<string, string> = error('error string');
+    const errorStringRes = matchLast({
+      Ok: ({value}) => value,
+      Error: ({value}) => value,
+    })(errorString);
 
     expect(okStringRes).toEqual('ok string');
     expect(errorStringRes).toEqual('error string');
