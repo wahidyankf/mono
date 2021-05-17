@@ -14,7 +14,7 @@ describe('match works correctly', () => {
 
     const noString: Option<string> = none();
     const noStringRes = match({
-      Some: (value) => value,
+      Some: ({value}) => value,
       None: () => 'nothing',
     })(noString);
 
