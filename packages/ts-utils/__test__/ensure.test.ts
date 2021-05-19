@@ -1,5 +1,16 @@
 import {ensure} from '../src';
 
+const {
+  ensureString,
+  ensureNumber,
+  ensureObject,
+  ensureArray,
+  DEFAULT_STRING,
+  DEFAULT_NUMBER,
+  DEFAULT_OBJECT,
+  DEFAULT_ARRAY,
+} = ensure;
+
 const A_STRING = 'a string';
 const A_USER_DEFAULT_STRING = 'a user default string';
 const A_NUMBER = 1;
@@ -9,86 +20,86 @@ const A_USER_DEFAULT_OBJECT = {key1: 'value1'};
 const AN_ARRAY = [0, 1, 2];
 const A_USER_DEFAULT_ARRAY = [3, 4, 5];
 
-describe('ensure.string is working correctly', () => {
-  test('ensure.string without default value should return value correctly', () => {
-    expect(ensure.string(A_STRING)).toEqual(A_STRING);
-    expect(ensure.string(A_NUMBER)).toEqual(ensure.DEFAULT_STRING);
-    expect(ensure.string(AN_OBJECT)).toEqual(ensure.DEFAULT_STRING);
-    expect(ensure.string(AN_ARRAY)).toEqual(ensure.DEFAULT_STRING);
+describe('ensureString is working correctly', () => {
+  test('ensureString without default value should return value correctly', () => {
+    expect(ensureString(A_STRING)).toEqual(A_STRING);
+    expect(ensureString(A_NUMBER)).toEqual(DEFAULT_STRING);
+    expect(ensureString(AN_OBJECT)).toEqual(DEFAULT_STRING);
+    expect(ensureString(AN_ARRAY)).toEqual(DEFAULT_STRING);
   });
-  test('ensure.string with default value should return value correctly', () => {
-    expect(ensure.string(A_STRING, A_USER_DEFAULT_STRING)).toEqual(A_STRING);
-    expect(ensure.string(A_NUMBER, A_USER_DEFAULT_STRING)).toEqual(
+  test('ensureString with default value should return value correctly', () => {
+    expect(ensureString(A_STRING, A_USER_DEFAULT_STRING)).toEqual(A_STRING);
+    expect(ensureString(A_NUMBER, A_USER_DEFAULT_STRING)).toEqual(
       A_USER_DEFAULT_STRING,
     );
-    expect(ensure.string(AN_OBJECT, A_USER_DEFAULT_STRING)).toEqual(
+    expect(ensureString(AN_OBJECT, A_USER_DEFAULT_STRING)).toEqual(
       A_USER_DEFAULT_STRING,
     );
-    expect(ensure.string(AN_ARRAY, A_USER_DEFAULT_STRING)).toEqual(
+    expect(ensureString(AN_ARRAY, A_USER_DEFAULT_STRING)).toEqual(
       A_USER_DEFAULT_STRING,
     );
   });
 });
 
-describe('ensure.number is working correctly', () => {
-  test('ensure.number without default value should return value correctly', () => {
-    expect(ensure.number(A_STRING)).toEqual(ensure.DEFAULT_NUMBER);
-    expect(ensure.number(A_NUMBER)).toEqual(A_NUMBER);
-    expect(ensure.number(AN_OBJECT)).toEqual(ensure.DEFAULT_NUMBER);
-    expect(ensure.number(AN_ARRAY)).toEqual(ensure.DEFAULT_NUMBER);
+describe('ensureNumber is working correctly', () => {
+  test('ensureNumber without default value should return value correctly', () => {
+    expect(ensureNumber(A_STRING)).toEqual(DEFAULT_NUMBER);
+    expect(ensureNumber(A_NUMBER)).toEqual(A_NUMBER);
+    expect(ensureNumber(AN_OBJECT)).toEqual(DEFAULT_NUMBER);
+    expect(ensureNumber(AN_ARRAY)).toEqual(DEFAULT_NUMBER);
   });
-  test('ensure.number with default value should return value correctly', () => {
-    expect(ensure.number(A_STRING, A_USER_DEFAULT_NUMBER)).toEqual(
+  test('ensureNumber with default value should return value correctly', () => {
+    expect(ensureNumber(A_STRING, A_USER_DEFAULT_NUMBER)).toEqual(
       A_USER_DEFAULT_NUMBER,
     );
-    expect(ensure.number(A_NUMBER, A_USER_DEFAULT_NUMBER)).toEqual(A_NUMBER);
-    expect(ensure.number(AN_OBJECT, A_USER_DEFAULT_NUMBER)).toEqual(
+    expect(ensureNumber(A_NUMBER, A_USER_DEFAULT_NUMBER)).toEqual(A_NUMBER);
+    expect(ensureNumber(AN_OBJECT, A_USER_DEFAULT_NUMBER)).toEqual(
       A_USER_DEFAULT_NUMBER,
     );
-    expect(ensure.number(AN_ARRAY, A_USER_DEFAULT_NUMBER)).toEqual(
+    expect(ensureNumber(AN_ARRAY, A_USER_DEFAULT_NUMBER)).toEqual(
       A_USER_DEFAULT_NUMBER,
     );
   });
 });
 
-describe('ensure.object is working correctly', () => {
-  test('ensure.object without default value should return value correctly', () => {
-    expect(ensure.object(A_STRING)).toEqual(ensure.DEFAULT_OBJECT);
-    expect(ensure.object(A_NUMBER)).toEqual(ensure.DEFAULT_OBJECT);
-    expect(ensure.object(AN_OBJECT)).toEqual(AN_OBJECT);
-    expect(ensure.object(AN_ARRAY)).toEqual(ensure.DEFAULT_OBJECT);
+describe('ensureObject is working correctly', () => {
+  test('ensureObject without default value should return value correctly', () => {
+    expect(ensureObject(A_STRING)).toEqual(DEFAULT_OBJECT);
+    expect(ensureObject(A_NUMBER)).toEqual(DEFAULT_OBJECT);
+    expect(ensureObject(AN_OBJECT)).toEqual(AN_OBJECT);
+    expect(ensureObject(AN_ARRAY)).toEqual(DEFAULT_OBJECT);
   });
-  test('ensure.object with default value should return value correctly', () => {
-    expect(ensure.object(A_STRING, A_USER_DEFAULT_OBJECT)).toEqual(
+  test('ensureObject with default value should return value correctly', () => {
+    expect(ensureObject(A_STRING, A_USER_DEFAULT_OBJECT)).toEqual(
       A_USER_DEFAULT_OBJECT,
     );
-    expect(ensure.object(A_NUMBER, A_USER_DEFAULT_OBJECT)).toEqual(
+    expect(ensureObject(A_NUMBER, A_USER_DEFAULT_OBJECT)).toEqual(
       A_USER_DEFAULT_OBJECT,
     );
-    expect(ensure.object(AN_OBJECT, A_USER_DEFAULT_OBJECT)).toEqual(AN_OBJECT);
-    expect(ensure.object(AN_ARRAY, A_USER_DEFAULT_OBJECT)).toEqual(
+    expect(ensureObject(AN_OBJECT, A_USER_DEFAULT_OBJECT)).toEqual(AN_OBJECT);
+    expect(ensureObject(AN_ARRAY, A_USER_DEFAULT_OBJECT)).toEqual(
       A_USER_DEFAULT_OBJECT,
     );
   });
 });
 
-describe('ensure.array is working correctly', () => {
-  test('ensure.array without default value should return value correctly', () => {
-    expect(ensure.array(A_STRING)).toEqual(ensure.DEFAULT_ARRAY);
-    expect(ensure.array(A_NUMBER)).toEqual(ensure.DEFAULT_ARRAY);
-    expect(ensure.array(AN_OBJECT)).toEqual(ensure.DEFAULT_ARRAY);
-    expect(ensure.array(AN_ARRAY)).toEqual(AN_ARRAY);
+describe('ensureArray is working correctly', () => {
+  test('ensureArray without default value should return value correctly', () => {
+    expect(ensureArray(A_STRING)).toEqual(DEFAULT_ARRAY);
+    expect(ensureArray(A_NUMBER)).toEqual(DEFAULT_ARRAY);
+    expect(ensureArray(AN_OBJECT)).toEqual(DEFAULT_ARRAY);
+    expect(ensureArray(AN_ARRAY)).toEqual(AN_ARRAY);
   });
-  test('ensure.array with default value should return value correctly', () => {
-    expect(ensure.array(A_STRING, A_USER_DEFAULT_ARRAY)).toEqual(
+  test('ensureArray with default value should return value correctly', () => {
+    expect(ensureArray(A_STRING, A_USER_DEFAULT_ARRAY)).toEqual(
       A_USER_DEFAULT_ARRAY,
     );
-    expect(ensure.array(A_NUMBER, A_USER_DEFAULT_ARRAY)).toEqual(
+    expect(ensureArray(A_NUMBER, A_USER_DEFAULT_ARRAY)).toEqual(
       A_USER_DEFAULT_ARRAY,
     );
-    expect(ensure.array(AN_OBJECT, A_USER_DEFAULT_ARRAY)).toEqual(
+    expect(ensureArray(AN_OBJECT, A_USER_DEFAULT_ARRAY)).toEqual(
       A_USER_DEFAULT_ARRAY,
     );
-    expect(ensure.array(AN_ARRAY, A_USER_DEFAULT_ARRAY)).toEqual(AN_ARRAY);
+    expect(ensureArray(AN_ARRAY, A_USER_DEFAULT_ARRAY)).toEqual(AN_ARRAY);
   });
 });
