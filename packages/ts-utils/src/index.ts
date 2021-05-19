@@ -1,8 +1,10 @@
 export {attempt} from './attempt';
+export {pipe} from './pipe';
 export * as adt from './adt';
 export * as option from './option';
-export {pipe} from './pipe';
 export * as result from './result';
+export * as task from './task';
 export type {ADT} from './adt';
 export type {Option} from './option';
 export type {Result} from './result';
+export type {Task} from './task';
