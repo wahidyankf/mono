@@ -13,10 +13,10 @@ describe('All utils are exported', () => {
   });
   test('ensure utils are exported', () => {
     expect(utils).toHaveProperty('ensure');
-    expect(utils.ensure).toHaveProperty('ensureString');
-    expect(utils.ensure).toHaveProperty('ensureNumber');
-    expect(utils.ensure).toHaveProperty('ensureObject');
-    expect(utils.ensure).toHaveProperty('ensureArray');
+    expect(utils.ensure).toHaveProperty('string');
+    expect(utils.ensure).toHaveProperty('number');
+    expect(utils.ensure).toHaveProperty('object');
+    expect(utils.ensure).toHaveProperty('array');
     expect(utils.ensure).toHaveProperty('DEFAULT_STRING');
     expect(utils.ensure).toHaveProperty('DEFAULT_NUMBER');
     expect(utils.ensure).toHaveProperty('DEFAULT_OBJECT');
