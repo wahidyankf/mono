@@ -2,7 +2,7 @@ import {result, option, adt, Option, Result} from '../src';
 
 const {some, none} = option;
 const {ok, error} = result;
-const {match, matchLast, matchP, matchPLast} = adt;
+const {match, unsafeMatchLast, matchP, unsafeMatchPLast} = adt;
 
 describe('match works correctly', () => {
   test('match works correctly for option', () => {
@@ -40,16 +40,16 @@ describe('match works correctly', () => {
   });
 });
 
-describe('matchLast works correctly', () => {
-  test('matchLast works correctly for option', () => {
+describe('unsafeMatchLast works correctly', () => {
+  test('unsafeMatchLast works correctly for option', () => {
     const someString = some('str');
-    const someStringRes = matchLast({
+    const someStringRes = unsafeMatchLast({
       Some: ({value}) => value,
       None: () => 'nothing',
     })(someString);
 
     const noString: Option<string> = none();
-    const noStringRes = matchLast({
+    const noStringRes = unsafeMatchLast({
       Some: ({value}) => value,
       None: () => 'nothing',
     })(noString);
@@ -58,15 +58,15 @@ describe('matchLast works correctly', () => {
     expect(noStringRes).toEqual('nothing');
   });
 
-  test('matchLast works correctly for result', () => {
+  test('unsafeMatchLast works correctly for result', () => {
     const okString: Result<string, string> = ok('ok string');
-    const okStringRes = matchLast({
+    const okStringRes = unsafeMatchLast({
       Ok: ({value}) => value,
       Error: ({value}) => value,
     })(okString);
 
     const errorString: Result<string, string> = error('error string');
-    const errorStringRes = matchLast({
+    const errorStringRes = unsafeMatchLast({
       Ok: ({value}) => value,
       Error: ({value}) => value,
     })(errorString);
@@ -120,10 +120,10 @@ describe('matchP works correctly', () => {
   });
 });
 
-describe('matchPLast works correctly', () => {
-  test('matchPLast works correctly for option', () => {
+describe('unsafeMatchPLast works correctly', () => {
+  test('unsafeMatchPLast works correctly for option', () => {
     const someString = some('str');
-    const someStringRes = matchPLast(
+    const someStringRes = unsafeMatchPLast(
       {
         Some: ({value}) => value,
       },
@@ -131,7 +131,7 @@ describe('matchPLast works correctly', () => {
     )(someString);
 
     const noString: Option<string> = none();
-    const noStringRes = matchPLast(
+    const noStringRes = unsafeMatchPLast(
       {
         Some: ({value}) => value,
       },
@@ -142,9 +142,9 @@ describe('matchPLast works correctly', () => {
     expect(noStringRes).toEqual('nothing');
   });
 
-  test('matchPLast works correctly for result', () => {
+  test('unsafeMatchPLast works correctly for result', () => {
     const okString: Result<string, string> = ok('ok string');
-    const okStringRes = matchPLast(
+    const okStringRes = unsafeMatchPLast(
       {
         Error: ({value}) => value,
       },
@@ -152,7 +152,7 @@ describe('matchPLast works correctly', () => {
     )(okString);
 
     const errorString: Result<string, string> = error('error string');
-    const errorStringRes = matchPLast(
+    const errorStringRes = unsafeMatchPLast(
       {
         Error: ({value}) => value,
       },
