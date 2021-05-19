@@ -41,7 +41,7 @@ describe('All utils are exported', () => {
   });
   test('task utils are exported', () => {
     expect(utils).toHaveProperty('task');
-    expect(utils.task).toHaveProperty('task');
-    expect(utils.task).toHaveProperty('chain');
+    expect(utils.task).toHaveProperty('createTask');
+    expect(utils.task).toHaveProperty('chainTask');
   });
 });
