@@ -59,14 +59,14 @@ type MakeADTMember<D extends string, ADT, Type extends string> = Extract<
  *
  * pipe(
  *   foo,
- *   makeMatchLast("_tag")({
+ *   makeUnsafeMatchLast("_tag")({
  *     none: () => 'none',
  *     some: ({value}) => 'some'
  *   })
  * )
  * ```
  */
-function makeMatchLast<D extends string>(
+function makeUnsafeMatchLast<D extends string>(
   d: D,
 ): <ADT extends Record<D, string>, M extends MakeMatchObj<D, ADT, unknown>>(
   matchObj: M,
@@ -82,13 +82,13 @@ function makeMatchLast<D extends string>(
  *
  * pipe(
  *   foo,
- *   makeMatchPLast("_tag")({
+ *   makeUnsafeMatchPLast("_tag")({
  *     some: ({value}) => 'some'
  *   }, (_option) => 'none')
  * )
  * ```
  */
-function makeMatchPLast<D extends string>(
+function makeUnsafeMatchPLast<D extends string>(
   d: D,
 ): <
   ADT extends Record<D, string>,
@@ -142,7 +142,7 @@ function makeMatch<D extends string>(
 }
 
 /**
- * Inverted version of {@link makeMatchPLast}, useful for better inference in some circumstances
+ * Inverted version of {@link makeUnsafeMatchPLast}, useful for better inference in some circumstances
  *
  * ```ts
  * declare const foo: Option<string>
@@ -206,7 +206,7 @@ export type ADT<T extends Record<string, {}>> = MakeADT<'_tag', T>;
  * )
  * ```
  */
-export const matchLast = makeMatchLast('_tag');
+export const unsafeMatchLast = makeUnsafeMatchLast('_tag');
 
 /**
  * Inverted version of match, useful for better inference in some circumstances
@@ -236,7 +236,7 @@ export const match = makeMatch('_tag');
  * )
  * ```
  */
-export const matchPLast = makeMatchPLast('_tag');
+export const unsafeMatchPLast = makeUnsafeMatchPLast('_tag');
 
 /**
  * Inverted version of matchP, useful for better inference in some circumstances
@@ -251,4 +251,4 @@ export const matchPLast = makeMatchPLast('_tag');
  */
 export const matchP = makeMatchP('_tag');
 
-export default {match, matchLast, matchP, matchPLast};
+export default {match, unsafeMatchLast, matchP, unsafeMatchPLast};
