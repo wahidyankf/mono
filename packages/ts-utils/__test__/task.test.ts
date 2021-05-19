@@ -1,7 +1,6 @@
 import {adt, result, pipe, Result, task} from '../src';
 
 const {match} = adt;
-const {ok, error} = result;
 const {createTask, chainTask} = task;
 
 const ERROR_STRING = 'errorString';
@@ -27,17 +26,17 @@ describe('task could successfully created', () => {
   test('successful task could be created', async () => {
     let aTask = await successfullTask;
 
-    expect(aTask).toEqual(ok(1));
+    expect(aTask).toEqual(result.ok(1));
   });
   test('failed task could be created (output value)', async () => {
     let aTask = await failedTask;
 
-    expect(aTask).toEqual(error(ERROR_STRING));
+    expect(aTask).toEqual(result.error(ERROR_STRING));
   });
   test('failed task could be created (output default value)', async () => {
     let aTask = await failedTaskDefault;
 
-    expect(aTask).toEqual(error(DEFAULT_ERROR_STRING));
+    expect(aTask).toEqual(result.error(DEFAULT_ERROR_STRING));
   });
 });
 
@@ -48,20 +47,20 @@ describe('chainTask work correctly', () => {
       chainTask(
         (t): Result<number, string> =>
           match(t)({
-            Ok: ({value}) => ok<number, string>(value * 2),
-            Error: ({value}) => error<number, string>(value),
+            Ok: ({value}) => result.ok<number, string>(value * 2),
+            Error: ({value}) => result.error<number, string>(value),
           }),
       ),
       chainTask(
         (t): Result<number, string> =>
           match(t)({
-            Ok: ({value}) => ok<number, string>(value * 2),
-            Error: ({value}) => error<number, string>(value),
+            Ok: ({value}) => result.ok<number, string>(value * 2),
+            Error: ({value}) => result.error<number, string>(value),
           }),
       ),
     );
 
-    expect(aTask).toEqual(ok(4));
+    expect(aTask).toEqual(result.ok(4));
   });
   test('failed task is chainable', async () => {
     let aTask = await pipe(
@@ -69,23 +68,23 @@ describe('chainTask work correctly', () => {
       chainTask(
         (t): Result<number, string> =>
           match(t)({
-            Ok: ({value}) => ok<number, string>(value * 2),
+            Ok: ({value}) => result.ok<number, string>(value * 2),
             Error: ({value}) =>
-              error<number, string>(value + ' ' + ERROR_STRING),
+              result.error<number, string>(value + ' ' + ERROR_STRING),
           }),
       ),
       chainTask(
         (t): Result<number, string> =>
           match(t)({
-            Ok: ({value}) => ok<number, string>(value * 2),
+            Ok: ({value}) => result.ok<number, string>(value * 2),
             Error: ({value}) =>
-              error<number, string>(value + ' ' + ERROR_STRING),
+              result.error<number, string>(value + ' ' + ERROR_STRING),
           }),
       ),
     );
 
     expect(aTask).toEqual(
-      error(ERROR_STRING + ' ' + ERROR_STRING + ' ' + ERROR_STRING),
+      result.error(ERROR_STRING + ' ' + ERROR_STRING + ' ' + ERROR_STRING),
     );
   });
 });
