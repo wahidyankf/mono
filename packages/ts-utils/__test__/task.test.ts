@@ -25,25 +25,25 @@ describe('task could successfully created', () => {
     expect(successfullTask).toBeInstanceOf(Promise);
   });
   test('successful task could be created', async () => {
-    let taskValue = await successfullTask;
+    let aTask = await successfullTask;
 
-    expect(taskValue).toEqual(ok(1));
+    expect(aTask).toEqual(ok(1));
   });
   test('failed task could be created (output value)', async () => {
-    let taskValue = await failedTask;
+    let aTask = await failedTask;
 
-    expect(taskValue).toEqual(error(ERROR_STRING));
+    expect(aTask).toEqual(error(ERROR_STRING));
   });
   test('failed task could be created (output default value)', async () => {
-    let taskValue = await failedTaskDefault;
+    let aTask = await failedTaskDefault;
 
-    expect(taskValue).toEqual(error(DEFAULT_ERROR_STRING));
+    expect(aTask).toEqual(error(DEFAULT_ERROR_STRING));
   });
 });
 
 describe('chainTask work correctly', () => {
   test('successfull task is chainable', async () => {
-    let taskValue = await pipe(
+    let aTask = await pipe(
       successfullTask,
       chainTask(
         (t): Result<number, string> =>
@@ -61,10 +61,10 @@ describe('chainTask work correctly', () => {
       ),
     );
 
-    expect(taskValue).toEqual(ok(4));
+    expect(aTask).toEqual(ok(4));
   });
   test('failed task is chainable', async () => {
-    let taskValue = await pipe(
+    let aTask = await pipe(
       failedTask,
       chainTask(
         (t): Result<number, string> =>
@@ -84,7 +84,7 @@ describe('chainTask work correctly', () => {
       ),
     );
 
-    expect(taskValue).toEqual(
+    expect(aTask).toEqual(
       error(ERROR_STRING + ' ' + ERROR_STRING + ' ' + ERROR_STRING),
     );
   });
