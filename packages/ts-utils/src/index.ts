@@ -1,6 +1,7 @@
 export {attempt} from './attempt';
 export {pipe} from './pipe';
 export * as adt from './adt';
+export * as ensure from './ensure';
 export * as option from './option';
 export * as result from './result';
 export * as task from './task';
