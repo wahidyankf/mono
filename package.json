@@ -33,5 +33,9 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx,css,md,json}": "prettier --write"
+  },
+  "volta": {
+    "node": "14.17.3",
+    "yarn": "1.22.10"
   }
 }
