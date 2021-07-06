@@ -1,9 +1,7 @@
-// What is your name? Brian
-// ​
-// Hello, Brian, nice to meet you!
+export const SANITY_CHECK = 'sanity check';
 
-export function sanityCheck() {
+export function checkSanity() {
   console.log('sanity check');
 }
 
-sanityCheck();
+checkSanity();
