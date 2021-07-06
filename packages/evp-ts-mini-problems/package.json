@@ -1,0 +1,19 @@
+{
+  "name": "evp-ts-mini-problems",
+  "version": "1.0.0",
+  "description": "Exercise for Progammers - Mini Problem Solutions",
+  "main": "index.js",
+  "author": "wahidyankf",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn clean && yarn compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "test": "yarn jest",
+    "test:watch": "yarn jest --watch"
+  },
+  "volta": {
+    "node": "14.17.3",
+    "yarn": "1.22.10"
+  }
+}
