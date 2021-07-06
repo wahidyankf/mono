@@ -1,0 +1,17 @@
+{
+  "name": "evp-js-mini-problems",
+  "version": "1.0.0",
+  "description": "Exercise for Progammers - Mini Problem Solutions in vanilla JS",
+  "main": "index.js",
+  "author": "wahidyankf",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo no build!",
+    "test": "yarn jest",
+    "test:watch": "yarn jest --watch"
+  },
+  "volta": {
+    "node": "14.17.3",
+    "yarn": "1.22.10"
+  }
+}
