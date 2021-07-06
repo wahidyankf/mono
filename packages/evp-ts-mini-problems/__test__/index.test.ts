@@ -1,5 +1,4 @@
-// import {log} from '../dist';
-const {log} = require('../dist');
+import {log} from '../dist';
 
 test('console.log has been called 1 time', () => {
   console.log = jest.fn();
