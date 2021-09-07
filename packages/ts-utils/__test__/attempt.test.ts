@@ -19,9 +19,7 @@ describe('attempt works correctly', () => {
   });
 
   test('it correctly returns error result on default error message key', () => {
-    expect(attempt(() => eval('null.test'))).toEqual(
-      result.error("Cannot read property 'test' of null"),
-    );
+    expect(result.isError(attempt(() => eval('null.test')))).toEqual(true);
     expect(
       attempt(() => {
         throw 'some error message';
